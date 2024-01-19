@@ -19,6 +19,7 @@ function TodoApp() {
 
   /** add a new todo to list */
   function create(newTodo) {
+    //create id
   }
 
   /** update a todo with updatedTodo */
