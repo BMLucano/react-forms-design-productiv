@@ -10,7 +10,7 @@ import React, { useState } from "react";
  * { TodoApp, EditableTodo } -> TodoForm
  */
 // const initialState = { title: "", description: "", priority: 1 }
-
+//TODO: have initialFormData as a constant
 function TodoForm({
   initialFormData = { title: "", description: "", priority: 1 },
   handleSave
@@ -33,7 +33,7 @@ function TodoForm({
     handleSave(formData);
     setFormData(initialFormData);
   }
-
+//TODO: don't need id for input types if there's no label, but maybe include label?
   return (
     <form className="NewTodoForm" onSubmit={handleSubmit}>
 
