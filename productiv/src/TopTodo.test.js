@@ -32,9 +32,15 @@ it("matches snapshot", function(){
   expect(renderedTodo.asFragment()).toMatchSnapshot()
 });
 
-it("displays correct todo", function(){
+it("displays highest priority todo", function(){
   expect(renderedTodo.getByText("test")).toBeInTheDocument();
   expect(renderedTodo.getByText("test description")).toBeInTheDocument();
   expect(renderedTodo.getByText("(priority: 1)")).toBeInTheDocument();
 
 })
+
+it("does not display other todos", function(){
+  expect(renderedTodo.queryByText("test2")).not.toBeInTheDocument();
+  expect(renderedTodo.queryByText("test description2")).not.toBeInTheDocument();
+  expect(renderedTodo.queryByText("(priority: 2)")).not.toBeInTheDocument();
+});

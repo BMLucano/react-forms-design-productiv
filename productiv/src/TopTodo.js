@@ -16,10 +16,7 @@ function TopTodo({ todos }) {
   let top = todos.reduce(
     (acc, cur) => cur.priority < acc.priority ? cur : acc, todos[0]);
 
-    //TODO: keep return on the same line if it's short
-  return (
-    <Todo todo={top} />
-  );
+  return (<Todo todo={top} />);
 }
 
 export default TopTodo;
