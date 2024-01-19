@@ -17,49 +17,44 @@ function EditableTodo({ todo, update, remove }) {
 
   /** Toggle if this is being edited */
   function toggleEdit() {
-    setIsEditing(curr => curr = true);
-
-   }
+    setIsEditing(curr => !curr);
+  }
 
   /** Call remove fn passed to this. */
   function handleDelete() {
     remove(todo.id);
-   }
+  }
 
   /** Edit form saved; toggle isEditing and update in ancestor. */
   function handleSave(formData) {
     update(formData);
-    setIsEditing(curr => curr = false);
-   }
+    toggleEdit();
+  }
 
-   //FIXME: crystal: send in intial form data without id
+  /**renders form if isEditing is true or the editable todo if false */
   return (
-      <div className="EditableTodo">
-        { isEditing === true &&  <TodoForm handleSave={handleSave}/>}
-
-
-            FIXME: crystal: only show todo if not editing
-                OR
-                //if isEditing === false, show todo with edit/del buttons
-
-                <div className="mb-3">
-                  <div className="float-end text-sm-end">
-                    <button
-                        className="EditableTodo-toggle btn-link btn btn-sm"
-                        onClick={toggleEdit}>
-                      Edit
-                    </button>
-                    <button
-                        className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
-                        onClick={handleDelete}>
-                      Del
-                    </button>
-                  </div>
-                  <Todo />
-                </div>
-
-      </div>
+    <div className="EditableTodo">
+      {isEditing === true
+        ? <TodoForm handleSave={handleSave} />
+        : <div className="mb-3">
+          <div className="float-end text-sm-end">
+            <button
+              className="EditableTodo-toggle btn-link btn btn-sm"
+              onClick={toggleEdit}>
+              Edit
+            </button>
+            <button
+              className="EditableTodo-delBtn btn-link btn btn-sm text-danger"
+              onClick={handleDelete}>
+              Del
+            </button>
+          </div>
+          <Todo todo={todo} />
+        </div>
+      }
+    </div>
   );
 }
+
 
 export default EditableTodo;

@@ -18,11 +18,7 @@ function TopTodo({ todos }) {
       (acc, cur) => cur.priority < acc.priority ? cur : acc, todos[0]);
 
   return (
-    <Todo
-      id={top.id}
-      title={top.title}
-      description={top.description}
-      priority={top.priority}
+    <Todo todo={top}
     />);
 }
 
