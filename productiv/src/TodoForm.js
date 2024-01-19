@@ -4,7 +4,7 @@ import React, { useState } from "react";
 /** Form for adding.
  *
  * Props:
- * - initialFormData
+ * - initialFormData: {title, description, priority}
  * - handleSave: function to call in parent.
  *
  * { TodoApp, EditableTodo } -> TodoForm
