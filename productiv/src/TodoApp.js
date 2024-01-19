@@ -20,16 +20,21 @@ function TodoApp({ initialTodos }) {
   const [todos, setTodos] = useState(initialTodos);
 
   /** add a new todo to list */
-  function create(newTodo) {
-
+  function create(newTodoInfo) {
+    let newTodo = {...newTodoInfo, id: uuid()};
+    setTodos(curr => [...curr, newTodo]);
   }
 
   /** update a todo with updatedTodo */
   function update(updatedTodo) {
+    // let updatedTodo = {...updatedTodoInfo};
+    let todoList = todos.filter(todo => todo.id !== updatedTodo.id);
+    setTodos(curr => [...todoList, updatedTodo]);
   }
 
   /** delete a todo by id */
   function remove(id) {
+    setTodos(curr => curr.filter(todo => todo.id !== id));
   }
 
   return (
@@ -37,16 +42,19 @@ function TodoApp({ initialTodos }) {
         <div className="row">
 
           <div className="col-md-6">
-            <EditableTodoList /> OR
-            <span className="text-muted">You have no todos.</span>
+            {todos.length > 0
+            ? <EditableTodoList todos={todos} update={update} remove={remove}/>
+            : <span className="text-muted">You have no todos.</span>}
+
           </div>
 
           <div className="col-md-6">
-            (if no top todo, omit this whole section)
-            <section className="mb-4">
+            {todos.length > 0
+            ?<section className="mb-4">
               <h3>Top Todo</h3>
-              <TopTodo />
+              <TopTodo todos={todos}/>
             </section>
+            : <p>You have no todos.</p>}
 
             <section>
               <h3 className="mb-3">Add Nü</h3>
